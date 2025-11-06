@@ -1,0 +1,40 @@
+<main class="main">
+  <div class="content">
+    @if (!isStarted) {
+      <div>
+        <h1>Harc a honért</h1>
+        <br>
+        <p>Online stratégiai játék</p>
+        <br>
+        <br>
+        <button (click)="getQuestion()" class="startButton">
+          <span>Kezdés</span>
+        </button>
+      </div>
+    }
+    <div class="wrapper">
+      @if (isStarted) {
+        <div class="questions">
+        <ul>
+          <li>{{ question.q }}</li>
+        </ul>
+          <button class="answerButton" (click)="sendAnswer(1)">
+            <span>{{ question.a1 }}</span>
+          </button>
+          <br>
+          <button class="answerButton"  (click)="sendAnswer(2)" [style.backgroundColor]="clickedButton2 ? 'red' : 'white'">
+            <span>{{ question.a2 }}</span>
+          </button>
+          <br>
+          <button class="answerButton"  (click)="sendAnswer(3)" [style.backgroundColor]="clickedButton3 ? 'red' : 'white'">
+            <span>{{ question.a3 }}</span>
+          </button>
+      </div>
+      }
+      <ng-template #loading>
+          <p>Nincs adat betöltve.</p>
+        </ng-template>
+    </div>
+  </div>
+</main>
+<router-outlet />
