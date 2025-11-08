@@ -1,39 +1,58 @@
 <main class="main">
   <div class="content">
     @if (!isStarted) {
-      <div>
-        <h1>Harc a honért</h1>
-        <br>
-        <p>Online stratégiai játék</p>
-        <br>
-        <br>
-        <button (click)="getQuestion()" class="startButton">
-          <span>Kezdés</span>
-        </button>
-      </div>
+    <div>
+      <h1>Harc a honért</h1>
+      <br>
+      <p>Online stratégiai játék</p>
+      <br>
+      <br>
+      @if (isAllConnected) {
+      <button (click)="getQuestion()" class="startButton">
+        <span>Kezdés</span>
+      </button>
+      }
+    </div>
     }
     <div class="wrapper">
       @if (isStarted) {
-        <div class="questions">
+      <div class="questions">
         <ul>
           <li>{{ question.q }}</li>
         </ul>
-          <button class="answerButton" (click)="sendAnswer(1)">
-            <span>{{ question.a1 }}</span>
-          </button>
-          <br>
-          <button class="answerButton"  (click)="sendAnswer(2)" [style.backgroundColor]="clickedButton2 ? 'red' : 'white'">
-            <span>{{ question.a2 }}</span>
-          </button>
-          <br>
-          <button class="answerButton"  (click)="sendAnswer(3)" [style.backgroundColor]="clickedButton3 ? 'red' : 'white'">
-            <span>{{ question.a3 }}</span>
-          </button>
+        <button class="answerButton" (click)="sendAnswer(1)" [style.backgroundColor]="clickedButton1 ? 'red' : 'white'"
+          [style.border]="correctAnswer1 ? 'solid 5px yellow' : 'none'">
+          <span>{{ question.a1 }}</span>
+        </button>
+        <br>
+        <button class="answerButton" (click)="sendAnswer(2)" [style.backgroundColor]="clickedButton2 ? 'red' : 'white'"
+          [style.border]="correctAnswer2 ? 'solid 5px yellow' : 'none'">
+          <span>{{ question.a2 }}</span>
+        </button>
+        <br>
+        <button class="answerButton" (click)="sendAnswer(3)" [style.backgroundColor]="clickedButton3 ? 'red' : 'white'"
+          [style.border]="correctAnswer3 ? 'solid 5px yellow' : 'none'">
+          <span>{{ question.a3 }}</span>
+        </button>
       </div>
       }
+
+       @if(!joined){
+        <button (click)="createRoom()">Csoport létrehozása</button>
+        <p>vagy</p>
+        <input [(ngModel)]="roomId" placeholder="Csoport azonosító">
+        <button (click)="joinRoom()">Csatlakozás</button>
+      }
+
+      <hr>
+
+      <h2>{{ message }}</h2>
+      @if(!isAllConnected) {
+      <div class="loader"></div>
+      }
       <ng-template #loading>
-          <p>Nincs adat betöltve.</p>
-        </ng-template>
+        <p>Nincs adat betöltve.</p>
+      </ng-template>
     </div>
   </div>
 </main>
