@@ -76,6 +76,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.socket.on('allConnected', (data: any) => {
       this.message = data.message;
       this.isAllConnected = true;
+      this.getQuestion();
+      this.changeDetector.markForCheck();
     });
 
     this.socket.on('errorMessage', (data: any) => {

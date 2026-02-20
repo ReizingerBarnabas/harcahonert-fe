@@ -7,15 +7,15 @@
       <p>Online stratégiai játék</p>
       <br>
       <br>
-      @if (isAllConnected) {
+      <!-- @if (isAllConnected) {
       <button (click)="getQuestion()" class="startButton">
         <span>Kezdés</span>
       </button>
-      }
+      } -->
     </div>
     }
     <div class="wrapper">
-      @if (isStarted) {
+      @if (isAllConnected) {
       <div class="questions">
         <ul>
           <li>{{ question.q }}</li>
