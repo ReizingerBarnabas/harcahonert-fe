@@ -170,7 +170,7 @@ export class AppComponent
 
   connectToServer(): void {
 
-    this.socket = io('http://localhost:3000');
+    this.socket = io('http://192.168.1.50:3000');
 
 
     // -----------------------------------------------
